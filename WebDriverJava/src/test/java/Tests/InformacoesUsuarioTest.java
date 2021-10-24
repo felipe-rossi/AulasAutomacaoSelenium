@@ -9,7 +9,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -81,11 +84,23 @@ public class InformacoesUsuarioTest {
 
     @Test
     public void removerUmContatoDeUmUsuario(){
-        //Logar na Aplicação
+        //Idetinficar qual contato vc quer excluir pelo XPath(+551191234-5678) e clicar no botão para exlcuir o contato
+        navegador.findElement(By.xpath("//span[text()=\"+551191234-5678\"]/following-sibling::a")).click();
 
-        //Clicar no link Hi Julio
+        //confirmar a janela Javascript
+        navegador.switchTo().alert().accept();
 
-        //Ir para aba addmoredata
+        //Validar se o texto de exclusão foi exibido corretamente: "Rest in peace, dear phone!"
+        WebElement divDaMensagem = navegador.findElement(By.id("toast-container"));
+        String mensagemExibida = divDaMensagem.getText();
+        assertEquals("Rest in peace, dear phone!", mensagemExibida);
+
+        //Aguardar até 10 seg para que a mensagem desapareça
+        WebDriverWait aguardar = new WebDriverWait(navegador,10);
+        aguardar.until(ExpectedConditions.stalenessOf(divDaMensagem));
+
+        //Clicar no link com o texto: "Logout"
+        navegador.findElement(By.linkText("Logout")).click();
     }
 
     @After
