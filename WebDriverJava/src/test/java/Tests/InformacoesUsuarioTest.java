@@ -32,10 +32,7 @@ public class InformacoesUsuarioTest {
 
         // Inserindo a Url que deseja acessar
         navegador.get("http://www.juliodelima.com.br/taskit/");
-    }
 
-    @Test
-    public void testAdcionarUmaInformacaoAdicionalDoUsuario(){
         //Clicar no link de nome: "Sign in"
         navegador.findElement(By.linkText("Sign in")).click();
 
@@ -56,7 +53,10 @@ public class InformacoesUsuarioTest {
 
         //Clicar no link com o texto: "MORE DATA ABOUT YOU"
         navegador.findElement(By.linkText("MORE DATA ABOUT YOU")).click();
+    }
 
+   // @Test
+    public void testAdcionarUmaInformacaoAdicionalDoUsuario(){
         //Clicar no botão atraves do seu Xpath:"//button[@data-target=\"addmoredata""));
         navegador.findElement(By.xpath("//button[@data-target=\"addmoredata\"]")).click();
 
@@ -77,6 +77,15 @@ public class InformacoesUsuarioTest {
         WebElement mensagemPopUp = navegador.findElement(By.id("toast-container"));
         String textoExibido = mensagemPopUp.getText();
         assertEquals("Your contact has been added!", textoExibido);
+    }
+
+    @Test
+    public void removerUmContatoDeUmUsuario(){
+        //Logar na Aplicação
+
+        //Clicar no link Hi Julio
+
+        //Ir para aba addmoredata
     }
 
     @After
