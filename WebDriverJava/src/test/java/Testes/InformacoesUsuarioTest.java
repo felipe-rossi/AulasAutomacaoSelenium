@@ -1,17 +1,20 @@
-package Tests;
+package Testes;
 
 import static org.junit.Assert.*;
 
+import org.easetech.easytest.annotation.DataLoader;
+import org.easetech.easytest.annotation.Param;
+import org.easetech.easytest.runner.DataDrivenTestRunner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,6 +23,8 @@ import suport.Screenshot;
 
 import java.util.concurrent.TimeUnit;
 
+@RunWith(DataDrivenTestRunner.class)
+@DataLoader(filePaths = "InformacoesUsuarioTest.csv")
 public class InformacoesUsuarioTest {
     private WebDriver navegador;
 
@@ -65,8 +70,8 @@ public class InformacoesUsuarioTest {
         navegador.findElement(By.linkText("MORE DATA ABOUT YOU")).click();
     }
 
-   //@Test
-    public void testAdcionarUmaInformacaoAdicionalDoUsuario(){
+   @Test
+    public void testAdcionarUmaInformacaoAdicionalDoUsuario(@Param(name="tipo")String tipo,@Param(name="contato")String contato,@Param(name="mensagem")String mensagemEsperada){
         //Clicar no botão atraves do seu Xpath:"//button[@data-target=\"addmoredata""));
         navegador.findElement(By.xpath("//button[@data-target=\"addmoredata\"]")).click();
 
@@ -75,10 +80,10 @@ public class InformacoesUsuarioTest {
 
         //Pegando o name do campo de seleção e setando para a opção Phone
         WebElement campoDeSelecao = formAddMoreData.findElement(By.name("type"));
-        new Select(campoDeSelecao).selectByValue("phone");
+        new Select(campoDeSelecao).selectByValue(tipo);
 
         //Preenchedo o  campo Contato de name: "contact" com o número:"+551191234-5678"
-        formAddMoreData.findElement(By.name("contact")).sendKeys("+551191234-5678");
+        formAddMoreData.findElement(By.name("contact")).sendKeys(contato);
 
         //Clicando no link save de texto: "SAVE"
         formAddMoreData.findElement(By.linkText("SAVE")).click();
@@ -86,7 +91,7 @@ public class InformacoesUsuarioTest {
         //Validar que a mensagem exibida seja: "Your contact has been added!"
         WebElement mensagemPopUp = navegador.findElement(By.id("toast-container"));
         String textoExibido = mensagemPopUp.getText();
-        assertEquals("Your contact has been added!", textoExibido);
+        assertEquals(mensagemEsperada, textoExibido);
     }
 
     @Test
