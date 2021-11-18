@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,11 +15,16 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import suport.Generator;
+import suport.Screenshot;
 
 import java.util.concurrent.TimeUnit;
 
 public class InformacoesUsuarioTest {
     private WebDriver navegador;
+
+    @Rule
+    public TestName test = new TestName();
 
     @Before
     public void setUp(){
@@ -58,7 +65,7 @@ public class InformacoesUsuarioTest {
         navegador.findElement(By.linkText("MORE DATA ABOUT YOU")).click();
     }
 
-   // @Test
+   //@Test
     public void testAdcionarUmaInformacaoAdicionalDoUsuario(){
         //Clicar no botão atraves do seu Xpath:"//button[@data-target=\"addmoredata""));
         navegador.findElement(By.xpath("//button[@data-target=\"addmoredata\"]")).click();
@@ -84,7 +91,7 @@ public class InformacoesUsuarioTest {
 
     @Test
     public void removerUmContatoDeUmUsuario(){
-        //Idetinficar qual contato vc quer excluir pelo XPath(+551191234-5678) e clicar no botão para exlcuir o contato
+        //Idetinficar qual contato vc quer excluir pelo XPath(+551191234-5678) e clicar no botão para excluir o contato
         navegador.findElement(By.xpath("//span[text()=\"+551191234-5678\"]/following-sibling::a")).click();
 
         //confirmar a janela Javascript
@@ -94,6 +101,9 @@ public class InformacoesUsuarioTest {
         WebElement divDaMensagem = navegador.findElement(By.id("toast-container"));
         String mensagemExibida = divDaMensagem.getText();
         assertEquals("Rest in peace, dear phone!", mensagemExibida);
+
+        //Chamar a classe Screenchot
+        Screenshot.tirarPrint(navegador,"C:\\Users\\felip\\OneDrive\\Documentos\\Prints\\" + Generator.dataHoraParaArquivo() + test.getMethodName() + ".png");
 
         //Aguardar até 10 seg para que a mensagem desapareça
         WebDriverWait aguardar = new WebDriverWait(navegador,10);
