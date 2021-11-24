@@ -1,4 +1,4 @@
-package Testes;
+package testes;
 
 import static org.junit.Assert.*;
 
@@ -25,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 @RunWith(DataDrivenTestRunner.class)
 @DataLoader(filePaths = "InformacoesUsuarioTest.csv")
+
 public class InformacoesUsuarioTest {
     private WebDriver navegador;
 
