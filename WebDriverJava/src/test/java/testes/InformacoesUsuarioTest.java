@@ -20,6 +20,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import suport.Generator;
 import suport.Screenshot;
+import suport.Web;
 
 import java.util.concurrent.TimeUnit;
 
@@ -27,30 +28,15 @@ import java.util.concurrent.TimeUnit;
 @DataLoader(filePaths = "InformacoesUsuarioTest.csv")
 
 public class InformacoesUsuarioTest {
-    private WebDriver navegador;
+    public WebDriver navegador;
 
     @Rule
     public TestName test = new TestName();
 
     @Before
     public void setUp(){
-        //Pegando o caminho do chromedriver
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\felip\\Documents\\Drivers\\chromedriver.exe");
-
-        //Abrindo o navegador chrome
-        navegador =  new ChromeDriver();
-
-        //Definindo um timeout para evitar futuros erros, definir um tempo de espera para carregar a página e seus elementos
-        navegador.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
-        //Deixando em full screen
-        navegador.manage().window().maximize();
-
-        // Inserindo a Url que deseja acessar
-        navegador.get("http://www.juliodelima.com.br/taskit/");
-
-        //Clicar no link de nome: "Sign in"
-        navegador.findElement(By.linkText("Sign in")).click();
+        //Chamando a classe para criação de um novo navegador
+        navegador = Web.criarChrome();
 
         //Identificar o formulário de login
         WebElement formLogin = navegador.findElement(By.id("signinbox"));
