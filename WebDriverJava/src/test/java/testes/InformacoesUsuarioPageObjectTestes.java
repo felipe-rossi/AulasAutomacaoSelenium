@@ -10,7 +10,10 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 import suport.Web;
+import static org.junit.Assert.assertEquals;
 
+@RunWith(DataDrivenTestRunner.class)
+@DataLoader(filePaths = "InformacoesUsuarioPageObjectTestes.csv")
 public class InformacoesUsuarioPageObjectTestes {
     private WebDriver navegador;
 
@@ -20,14 +23,16 @@ public class InformacoesUsuarioPageObjectTestes {
     }
 
     @Test
-    public void testAdicionarInformacaoAdicionalUsuario(){
+    public void testAdicionarInformacaoAdicionalUsuario(@Param(name = "tipo")String tipo, @Param(name = "contato")String contato, @Param(name = "mensagem")String mensagemEsperada){
 
-        new LoginPage(navegador).clicarSignIn()
+       String mensagemExibidaTela =  new LoginPage(navegador).clicarSignIn()
                 .fazerLogin("julio0001","123456")
                 .clicarMe()
+                .clicarMoreData()
                 .clicarNoBotaoAddMoreData()
-                .adicionarNovaInformacao(@Param(name = "tipo")String tipo, @Param(name = "contato")String contato, @Param(name = "mensagem")String mensagemEsperada);
+                .adicionarNovaInformacao(tipo, contato);
 
+        assertEquals(mensagemEsperada, mensagemExibidaTela);
     }
 
    // @After

@@ -24,11 +24,10 @@ import suport.Web;
 
 import java.util.concurrent.TimeUnit;
 
-@RunWith(DataDrivenTestRunner.class)
-@DataLoader(filePaths = "InformacoesUsuarioTest.csv")
+
 
 public class InformacoesUsuarioTest {
-    public WebDriver navegador;
+ /*   public WebDriver navegador;
 
     @Rule
     public TestName test = new TestName();
@@ -38,14 +37,7 @@ public class InformacoesUsuarioTest {
         //Chamando a classe para criação de um novo navegador
         navegador = Web.criarChrome();
 
-    }
 
-   @Test
-    public void testAdcionarUmaInformacaoAdicionalDoUsuario(@Param(name="tipo")String tipo,@Param(name="contato")String contato,@Param(name="mensagem")String mensagemEsperada){
-
-
-
-    }
 
     @Test
     public void removerUmContatoDeUmUsuario(){

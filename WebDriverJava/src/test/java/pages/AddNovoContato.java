@@ -17,7 +17,8 @@ public class AddNovoContato extends BasePage {
         super(navegador);
     }
 
-    public AddNovoContato adicionarNovaInformacao(String tipo, String contato, String mensagemEsperada){
+    public String adicionarNovaInformacao(String tipo, String contato){
+
         //Identificar o formulário para adicionar mais dados
         WebElement formAddMoreData = navegador.findElement(By.id("addmoredata"));
 
@@ -32,10 +33,7 @@ public class AddNovoContato extends BasePage {
         formAddMoreData.findElement(By.linkText("SAVE")).click();
 
         //Validar que a mensagem exibida seja: "Your contact has been added!"
-        WebElement mensagemPopUp = navegador.findElement(By.id("toast-container"));
-        String textoExibido = mensagemPopUp.getText();
-        assertEquals(mensagemEsperada, textoExibido);
+        return navegador.findElement(By.id("toast-container")).getText();
 
-        return this;
     }
 }
