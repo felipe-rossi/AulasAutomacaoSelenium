@@ -1,8 +1,12 @@
 package testes;
 
+import org.easetech.easytest.annotation.DataLoader;
+import org.easetech.easytest.annotation.Param;
+import org.easetech.easytest.runner.DataDrivenTestRunner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 import suport.Web;
@@ -17,7 +21,13 @@ public class InformacoesUsuarioPageObjectTestes {
 
     @Test
     public void testAdicionarInformacaoAdicionalUsuario(){
-        new LoginPage(navegador).clicarSignIn().inserirUser("julio0001", "123456");
+
+        new LoginPage(navegador).clicarSignIn()
+                .fazerLogin("julio0001","123456")
+                .clicarMe()
+                .clicarNoBotaoAddMoreData()
+                .adicionarNovaInformacao(@Param(name = "tipo")String tipo, @Param(name = "contato")String contato, @Param(name = "mensagem")String mensagemEsperada);
+
     }
 
    // @After

@@ -6,13 +6,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import suport.Web;
 
-public class LoginPage {
-    private WebDriver navegador;
+public class LoginPage extends BasePage {
 
-   //Criando o construtor
-   public LoginPage(WebDriver navegador){
-       this.navegador = navegador;
-   }
+    public LoginPage(WebDriver navegador) {
+        super(navegador);
+    }
 
     public LoginFormPage clicarSignIn(){
 

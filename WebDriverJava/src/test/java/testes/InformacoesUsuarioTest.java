@@ -38,47 +38,13 @@ public class InformacoesUsuarioTest {
         //Chamando a classe para criação de um novo navegador
         navegador = Web.criarChrome();
 
-        //Identificar o formulário de login
-        WebElement formLogin = navegador.findElement(By.id("signinbox"));
-
-        //Inserir o user: "julio0001" no campo de login de name: "login"
-        formLogin.findElement(By.name("login")).sendKeys("julio0001");
-
-        //Inserir a senha: "123456" no campo de senha de name: "password"
-        formLogin.findElement(By.name("password")).sendKeys("123456");
-
-        //Clicar no botão: "Sign in" do texto: "SIGN IN"
-        formLogin.findElement(By.linkText("SIGN IN")).click();
-
-        //Clicar no link que tenha a class: "me"
-        navegador.findElement(By.className("me")).click();
-
-        //Clicar no link com o texto: "MORE DATA ABOUT YOU"
-        navegador.findElement(By.linkText("MORE DATA ABOUT YOU")).click();
     }
 
    @Test
     public void testAdcionarUmaInformacaoAdicionalDoUsuario(@Param(name="tipo")String tipo,@Param(name="contato")String contato,@Param(name="mensagem")String mensagemEsperada){
-        //Clicar no botão atraves do seu Xpath:"//button[@data-target=\"addmoredata""));
-        navegador.findElement(By.xpath("//button[@data-target=\"addmoredata\"]")).click();
 
-        //Identificar o formulário para adicionar mais dados
-        WebElement formAddMoreData = navegador.findElement(By.id("addmoredata"));
 
-        //Pegando o name do campo de seleção e setando para a opção Phone
-        WebElement campoDeSelecao = formAddMoreData.findElement(By.name("type"));
-        new Select(campoDeSelecao).selectByValue(tipo);
 
-        //Preenchedo o  campo Contato de name: "contact" com o número:"+551191234-5678"
-        formAddMoreData.findElement(By.name("contact")).sendKeys(contato);
-
-        //Clicando no link save de texto: "SAVE"
-        formAddMoreData.findElement(By.linkText("SAVE")).click();
-
-        //Validar que a mensagem exibida seja: "Your contact has been added!"
-        WebElement mensagemPopUp = navegador.findElement(By.id("toast-container"));
-        String textoExibido = mensagemPopUp.getText();
-        assertEquals(mensagemEsperada, textoExibido);
     }
 
     @Test
