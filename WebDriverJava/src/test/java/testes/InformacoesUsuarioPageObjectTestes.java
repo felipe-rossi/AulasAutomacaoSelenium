@@ -19,7 +19,7 @@ public class InformacoesUsuarioPageObjectTestes {
 
     @Before
     public void SetUp(){
-        navegador = Web.criarChrome();
+        navegador = Web.criarNavegadorNaNuvem();
     }
 
     @Test
