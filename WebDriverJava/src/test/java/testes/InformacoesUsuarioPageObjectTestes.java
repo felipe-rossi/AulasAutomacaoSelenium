@@ -60,7 +60,7 @@ public class InformacoesUsuarioPageObjectTestes {
 
     }
 
-   //@After
+   @After
     public void TearDown(){
         navegador.quit();
     }
