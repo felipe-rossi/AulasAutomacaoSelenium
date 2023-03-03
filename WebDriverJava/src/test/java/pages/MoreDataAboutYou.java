@@ -1,19 +1,17 @@
 package pages;
 
-import org.easetech.easytest.annotation.DataLoader;
-import org.easetech.easytest.annotation.Param;
-import org.easetech.easytest.runner.DataDrivenTestRunner;
-import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import static org.junit.Assert.assertEquals;
 
 
-public class AddNovoContato extends BasePage {
-    public AddNovoContato(WebDriver navegador) {
+public class MoreDataAboutYou extends BasePage {
+    public MoreDataAboutYou(WebDriver navegador) {
         super(navegador);
     }
 
@@ -36,4 +34,6 @@ public class AddNovoContato extends BasePage {
         return navegador.findElement(By.id("toast-container")).getText();
 
     }
+
+
 }

@@ -1,3 +1,7 @@
 testAdicionarInformacaoAdicionalUsuario,tipo,contato,mensagem
                                        ,phone,+551191234-5678,Your contact has been added!
-                                       ,phone,+551191234-5674,Your contact has been added!
+                                       ,phone,+551191234-5678,Your contact has been added!
+
+testRemoverInformacaoAdicionalUsuario,contato,mensagem
+                                     ,+551191234-5678, Rest in peace. dear phone!
+                                     ,+551191234-5678, Rest in peace. dear phone!

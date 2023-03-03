@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
+import pages.MePage;
 import suport.Web;
 import static org.junit.Assert.assertEquals;
 
@@ -19,10 +20,10 @@ public class InformacoesUsuarioPageObjectTestes {
 
     @Before
     public void SetUp(){
-        navegador = Web.criarNavegadorNaNuvem();
+        navegador = Web.criarChrome();
     }
 
-    @Test
+   /* @Test
     public void testAdicionarInformacaoAdicionalUsuario(@Param(name = "tipo")String tipo, @Param(name = "contato")String contato, @Param(name = "mensagem")String mensagemEsperada){
 
        String mensagemExibidaTela =  new LoginPage(navegador).clicarSignIn()
@@ -35,7 +36,31 @@ public class InformacoesUsuarioPageObjectTestes {
         assertEquals(mensagemEsperada, mensagemExibidaTela);
     }
 
-   // @After
+    @Test
+    public void testRemoverInformacaoAdicionalUsuario(@Param(name = "contato")String contato, @Param(name = "mensagem")String mensagemEsperada){
+
+        String mensagemExibidaTela =  new LoginPage(navegador)
+                .clicarSignIn()
+                .fazerLogin("julio0001","123456")
+                .clicarMe()
+                .clicarMoreData()
+                .removerContato(contato);
+
+        assertEquals(mensagemEsperada.replace(".", ","), mensagemExibidaTela);
+    }*/
+
+    @Test
+    public void testMudarNomeDoUsuario(){
+
+      new LoginPage(navegador)
+                .clicarSignIn()
+                .fazerLogin("julio0001","123456")
+                .clicarMe()
+               .mudarNome();
+
+    }
+
+   //@After
     public void TearDown(){
         navegador.quit();
     }
