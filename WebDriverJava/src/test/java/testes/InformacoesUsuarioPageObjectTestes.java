@@ -23,7 +23,7 @@ public class InformacoesUsuarioPageObjectTestes {
         navegador = Web.criarChrome();
     }
 
-   /* @Test
+   @Test
     public void testAdicionarInformacaoAdicionalUsuario(@Param(name = "tipo")String tipo, @Param(name = "contato")String contato, @Param(name = "mensagem")String mensagemEsperada){
 
        String mensagemExibidaTela =  new LoginPage(navegador).clicarSignIn()
@@ -47,7 +47,7 @@ public class InformacoesUsuarioPageObjectTestes {
                 .removerContato(contato);
 
         assertEquals(mensagemEsperada.replace(".", ","), mensagemExibidaTela);
-    }*/
+    }
 
     @Test
     public void testMudarNomeDoUsuario(){
@@ -57,7 +57,6 @@ public class InformacoesUsuarioPageObjectTestes {
                 .fazerLogin("julio0001","123456")
                 .clicarMe()
                .mudarNome();
-
     }
 
    @After
