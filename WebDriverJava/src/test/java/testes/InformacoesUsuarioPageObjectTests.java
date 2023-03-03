@@ -10,7 +10,7 @@ import suport.Web;
 import static org.junit.Assert.assertEquals;
 
 
-public class InformacoesUsuarioPageObjectTestes {
+public class InformacoesUsuarioPageObjectTests {
     private WebDriver navegador;
 
     @Before
