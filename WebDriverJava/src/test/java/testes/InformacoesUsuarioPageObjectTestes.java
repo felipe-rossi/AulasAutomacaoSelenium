@@ -1,20 +1,15 @@
 package testes;
 
-import org.easetech.easytest.annotation.DataLoader;
-import org.easetech.easytest.annotation.Param;
-import org.easetech.easytest.runner.DataDrivenTestRunner;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
-import pages.MePage;
 import suport.Web;
 import static org.junit.Assert.assertEquals;
 
-@RunWith(DataDrivenTestRunner.class)
-@DataLoader(filePaths = "InformacoesUsuarioPageObjectTestes.csv")
+
 public class InformacoesUsuarioPageObjectTestes {
     private WebDriver navegador;
 
@@ -24,29 +19,29 @@ public class InformacoesUsuarioPageObjectTestes {
     }
 
    @Test
-    public void testAdicionarInformacaoAdicionalUsuario(@Param(name = "tipo")String tipo, @Param(name = "contato")String contato, @Param(name = "mensagem")String mensagemEsperada){
+    public void testAdicionarInformacaoAdicionalUsuario(){
 
        String mensagemExibidaTela =  new LoginPage(navegador).clicarSignIn()
                 .fazerLogin("julio0001","123456")
                 .clicarMe()
                 .clicarMoreData()
                 .clicarNoBotaoAddMoreData()
-                .adicionarNovaInformacao(tipo, contato);
+                .adicionarNovaInformacao("phone", "+551191234-5678");
 
-        assertEquals(mensagemEsperada, mensagemExibidaTela);
+        assertEquals("Your contact has been added!", mensagemExibidaTela);
     }
 
     @Test
-    public void testRemoverInformacaoAdicionalUsuario(@Param(name = "contato")String contato, @Param(name = "mensagem")String mensagemEsperada){
+    public void testRemoverInformacaoAdicionalUsuario(){
 
         String mensagemExibidaTela =  new LoginPage(navegador)
                 .clicarSignIn()
                 .fazerLogin("julio0001","123456")
                 .clicarMe()
                 .clicarMoreData()
-                .removerContato(contato);
+                .removerContato("+551191234-5678");
 
-        assertEquals(mensagemEsperada.replace(".", ","), mensagemExibidaTela);
+        assertEquals("Rest in peace, dear phone!", mensagemExibidaTela);
     }
 
     @Test
@@ -57,6 +52,18 @@ public class InformacoesUsuarioPageObjectTestes {
                 .fazerLogin("julio0001","123456")
                 .clicarMe()
                .mudarNome();
+    }
+
+    @Test
+    public void testDirecionamentoMinhasTarefas(){
+
+        String mensagemExibidaTela = new LoginPage(navegador)
+                .clicarSignIn()
+                .fazerLogin("julio0001","123456")
+                .acessarPaginaMinhasTarefas()
+                .validarEtapaMyTasks();
+
+        assertEquals("My tasks", mensagemExibidaTela);
     }
 
    @After

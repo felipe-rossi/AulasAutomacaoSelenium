@@ -13,4 +13,9 @@ public class SecretaPage extends BasePage{
         navegador.findElement(By.className("me")).click();
         return new MePage(navegador);
     }
+
+    public MyTasksPage acessarPaginaMinhasTarefas(){
+        navegador.findElement(By.linkText("LET'S ADD SOME TASKS!")).click();
+        return new MyTasksPage(navegador);
+    }
 }

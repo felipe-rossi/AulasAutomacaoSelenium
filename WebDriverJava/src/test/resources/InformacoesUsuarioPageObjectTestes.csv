@@ -5,3 +5,6 @@ testAdicionarInformacaoAdicionalUsuario,tipo,contato,mensagem
 testRemoverInformacaoAdicionalUsuario,contato,mensagem
                                      ,+551191234-5678, Rest in peace. dear phone!
                                      ,+551191234-5678, Rest in peace. dear phone!
+
+testDirecionamentoMinhasTarefas,mensagem
+                                ,My tasks
